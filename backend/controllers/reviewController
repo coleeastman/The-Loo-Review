@@ -1,0 +1,123 @@
+const Review = require('../models/reviewModel')
+const mongoose = require('mongoose')
+
+// one function for each route in reviewRoutes
+
+// get all reviews
+const getReviews = async (req, res) => {
+    const reviews = await Review.find({}).sort({createdAt: -1})
+    res.status(200).json(reviews)
+}
+
+// get a single review
+const getReview = async (req, res) => {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'No such review'})
+    }
+
+    const newReview = await Review.findById(id)
+
+    if(!newReview) {
+        return res.status(404).json({error: 'No such review'})
+    }
+
+    res.status(200).json(newReview)
+}
+
+// create a review
+const createReview = async (req, res) => {
+    const { restroom, stars, review } = req.body
+
+    let emptyFields = []
+
+    if (!restroom) {
+        emptyFields.push('restroom')
+    }
+    if (!stars) {
+        emptyFields.push('stars')
+    }
+    if (!review) {
+        emptyFields.push('review')
+    }
+    if (emptyFields.length > 0) {
+        return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
+    }
+
+    // add doc to dc
+    try {
+        const newReview = await Review.create({ restroom, stars, review })
+        res.status(200).json(newReview)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
+// delete a review
+const deleteReview = async (req, res) => {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'No such review'})
+    }
+
+    const review = await Review.findOneAndDelete({_id:  id})
+
+    if(!review) {
+        return res.status(404).json({error: 'No such review'})
+    }
+
+    res.status(200).json(review)
+}
+
+// update a review
+const updateReview = async (req, res) => {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'No such review'})
+    }
+
+    const review = await Review.findOneAndUpdate({_id:  id}, {
+        ...req.body // spread properties of the object
+    })
+
+    if(!review) {
+        return res.status(404).json({error: 'No such review'})
+    }
+
+    res.status(200).json(review)
+}
+
+// get review count
+const getReviewCount = async (req, res) => {
+    try {
+      const count = await Review.countDocuments();
+      res.status(200).json({ count });
+    } catch (error) {
+      console.log("Error: ", error);
+      res.status(500).json({ message: error.message });
+    }
+};
+
+// get reviews by restroom
+const getReviewsByRestroom = async (req, res) => {
+    const { restroom } = req.params;
+    try {
+      const reviews = await Review.find({ restroom });
+      res.status(200).json(reviews);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+
+module.exports = {
+    getReviews,
+    getReview,
+    createReview,
+    deleteReview,
+    updateReview,
+    getReviewCount,
+    getReviewsByRestroom
+}

@@ -1,0 +1,25 @@
+// file to register routes
+
+const express = require('express')
+const { 
+    getRestroom,
+    getRestrooms,
+    createRestroom,
+    deleteRestroom
+} = require('../controllers/restroomController')
+
+const router = express.Router()
+
+// GET all restrooms
+router.get('/', getRestrooms)
+
+// GET a single restrooms
+router.get('/:id', getRestroom)
+
+// POST a restrooms
+router.post('/', createRestroom)
+
+// DELETE a restrooms
+router.delete('/:id', deleteRestroom)
+
+module.exports = router

@@ -1,0 +1,11 @@
+const express = require('express');
+const { 
+    getRestroomReviewCount,
+} = require('../controllers/restroomReviewCountController');
+
+const router = express.Router();
+
+// GET review count for a specific restroom
+router.get('/:id', getRestroomReviewCount);
+
+module.exports = router;

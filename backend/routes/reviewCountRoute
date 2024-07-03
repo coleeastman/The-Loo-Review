@@ -1,0 +1,13 @@
+// file to register routes
+
+const express = require('express')
+const { 
+    getReviewCount,
+} = require('../controllers/reviewCountController')
+
+const router = express.Router()
+
+// GET review count
+router.get('/', getReviewCount);
+
+module.exports = router

@@ -1,0 +1,23 @@
+const Review = require('../models/reviewModel');
+const mongoose = require('mongoose');
+
+// get review count for a specific restroom
+const getRestroomReviewCount = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+
+    const restroomReviewCount = await Review.countDocuments({ restroom: id });
+    res.status(200).json({ restroomReviewCount });
+
+  } catch (error) {
+
+    console.log("Error: ", error);
+    res.status(500).json({ message: error.message });
+    
+  }
+};
+
+module.exports = {
+  getRestroomReviewCount
+};
