@@ -6,7 +6,7 @@ import asuImg from '../images/asu-img.jpeg';
 import Footer from '../components/Footer';
 
 // Use the environment variable for the backend URL
-const backendUrl = process.env.REACT_APP_BACKEND_URL;
+const backendUrl = process.env.BACKEND_URL;
 
 const Home = () => {
   const [restrooms, setRestrooms] = useState(null);

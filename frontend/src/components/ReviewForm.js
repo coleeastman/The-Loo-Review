@@ -16,7 +16,7 @@ const ReviewForm = ({ restroom }) => {
 
         const restroomReview = { restroom: restroomName, stars, review };
 
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/reviews/`, {
+        const response = await fetch(`${process.env.BACKEND_URL}/api/reviews/`, {
             method: 'POST',
             body: JSON.stringify(restroomReview),
             headers: {
