@@ -14,7 +14,7 @@ const Restroom = () => {
 
   useEffect(() => {
     const fetchRestroom = async () => {
-      const response = await fetch(`/api/restrooms/${id}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/restrooms/${id}`);
       const json = await response.json();
 
       if (response.ok) {
@@ -24,14 +24,14 @@ const Restroom = () => {
 
     const fetchReviews = async () => {
       // fetch the restroom details to get the restroom name
-      const restroomResponse = await fetch(`/api/restrooms/${id}`);
+      const restroomResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/restrooms/${id}`);
       const restroomJson = await restroomResponse.json();
 
       if (restroomResponse.ok) {
         const restroomName = restroomJson.restroom;
 
         // fetch the reviews based on the restroom name
-        const reviewResponse = await fetch(`/api/reviews/restroom/${restroomName}`);
+        const reviewResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/reviews/restroom/${restroomName}`);
         const reviewJson = await reviewResponse.json();
 
         if (reviewResponse.ok) {

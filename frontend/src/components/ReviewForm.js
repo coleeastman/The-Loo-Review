@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 const ReviewForm = ({ restroom }) => {
     const [restroomName, setRestroomName] = useState(restroom);
     const [stars, setStars] = useState('');
     const [review, setReview] = useState('');
     const [error, setError] = useState(null);
-    const [emptyFields, setEmptyFields] = useState([])
+    const [emptyFields, setEmptyFields] = useState([]);
 
     useEffect(() => {
         setRestroomName(restroom);
@@ -16,7 +16,7 @@ const ReviewForm = ({ restroom }) => {
 
         const restroomReview = { restroom: restroomName, stars, review };
 
-        const response = await fetch('/api/reviews/', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/reviews/`, {
             method: 'POST',
             body: JSON.stringify(restroomReview),
             headers: {
@@ -28,8 +28,8 @@ const ReviewForm = ({ restroom }) => {
         if (!response.ok) {
             setError(json.error);
         }
-        if(response.ok) {
-            setEmptyFields([])
+        if (response.ok) {
+            setEmptyFields([]);
             setRestroomName('');
             setStars('');
             setReview('');

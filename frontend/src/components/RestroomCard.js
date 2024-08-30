@@ -137,7 +137,7 @@ const RestroomCard = ({ restroom }) => {
   useEffect(() => {
     const fetchRestroomReviewCount = async () => {
       try {
-        const response = await fetch(`/api/restroomReviewCount/${restroom.restroom}`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/restroomReviewCount/${restroom.restroom}`);
         const json = await response.json();
 
         if (response.ok) {
@@ -170,8 +170,6 @@ const RestroomCard = ({ restroom }) => {
         <h4 className="restroom-title">{restroom.restroom}</h4>
       </div>
     </div>
-
-    
   );
 };
 
