@@ -28,9 +28,9 @@ app.use('/api/restroomReviewCount/', restroomReviewCountRoute);
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
-        // listen for requests
-        app.listen(process.env.PORT, () => {
-            console.log('connected to database, listening on port', process.env.PORT)
+        // listen for requests on all network interfaces
+        app.listen(process.env.PORT || 4000, '0.0.0.0', () => {
+            console.log('connected to database, listening on port', process.env.PORT || 4000)
         })
     })
     .catch((error) => {
