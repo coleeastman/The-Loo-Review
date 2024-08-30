@@ -3,17 +3,18 @@ import React, { useEffect, useState } from 'react';
 import RestroomCard from '../components/RestroomCard';
 // import the image
 import asuImg from '../images/asu-img.jpeg';
-
 import Footer from '../components/Footer';
+
+// Use the environment variable for the backend URL
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 const Home = () => {
   const [restrooms, setRestrooms] = useState(null);
   const [reviewCount, setReviewCount] = useState(0);
 
   useEffect(() => {
-
     const fetchRestrooms = async () => {
-      const response = await fetch('/api/restrooms');
+      const response = await fetch(`${backendUrl}/api/restrooms`);
       const json = await response.json();
 
       if (response.ok) {
@@ -24,7 +25,7 @@ const Home = () => {
     };
 
     const fetchReviewCount = async () => {
-      const response = await fetch('/api/reviewcount');
+      const response = await fetch(`${backendUrl}/api/reviewcount`);
       const json = await response.json();
 
       if (response.ok) {
