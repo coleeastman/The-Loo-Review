@@ -19,6 +19,11 @@ app.use((req, res, next) => {
     next() // passes control to next middleware or route handler
 })
 
+// root route
+app.get('/', (req, res) => {
+    res.send('Backend is up and running!');
+});
+
 // route handler to handle requests
 app.use('/api/reviews/', reviewRoutes) // combines base url with routes from reviewRoutes
 app.use('/api/restrooms/', restroomRoutes)
