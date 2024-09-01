@@ -2,6 +2,7 @@ require('dotenv').config()
 
 // import express
 const express = require('express')
+const cors = require('cors')
 const mongoose = require('mongoose') // object 'mongoose' to connect to db
 const reviewRoutes = require('./routes/reviewRoutes') // module export of reviews.js
 const restroomRoutes = require('./routes/restroomRoutes')
@@ -12,6 +13,7 @@ const restroomReviewCountRoute = require('./routes/restroomReviewCountRoute');
 const app = express()
 
 // middleware
+app.use(cors()); // Enable CORS for all requests
 app.use(express.json()) // Parses JSON data into JavaScript obj and assigns it to req.body
 
 app.use((req, res, next) => {
