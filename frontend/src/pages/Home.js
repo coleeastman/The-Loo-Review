@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchRestrooms = async () => {
-      const response = await fetch(`${backendUrl}/api/restrooms`);
+      const response = await fetch(`${process.env.BACKEND_URL}/api/restrooms`);
       const json = await response.json();
 
       if (response.ok) {
@@ -25,7 +25,7 @@ const Home = () => {
     };
 
     const fetchReviewCount = async () => {
-      const response = await fetch(`${backendUrl}/api/reviewcount`);
+      const response = await fetch(`${process.env.BACKEND_URL}/api/reviewcount`);
       const json = await response.json();
 
       if (response.ok) {
