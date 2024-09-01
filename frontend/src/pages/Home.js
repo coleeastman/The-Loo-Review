@@ -5,16 +5,13 @@ import RestroomCard from '../components/RestroomCard';
 import asuImg from '../images/asu-img.jpeg';
 import Footer from '../components/Footer';
 
-// Use the environment variable for the backend URL
-const backendUrl = process.env.BACKEND_URL;
-
 const Home = () => {
   const [restrooms, setRestrooms] = useState(null);
   const [reviewCount, setReviewCount] = useState(0);
 
   useEffect(() => {
     const fetchRestrooms = async () => {
-      const response = await fetch(`${process.env.BACKEND_URL}/api/restrooms`);
+      const response = await fetch(`https://the-loo-review.onrender.com/api/restrooms/`);
       const json = await response.json();
 
       if (response.ok) {
@@ -25,7 +22,7 @@ const Home = () => {
     };
 
     const fetchReviewCount = async () => {
-      const response = await fetch(`${process.env.BACKEND_URL}/api/reviewcount`);
+      const response = await fetch(`https://the-loo-review.onrender.com/api/reviewcount`);
       const json = await response.json();
 
       if (response.ok) {

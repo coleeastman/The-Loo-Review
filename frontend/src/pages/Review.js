@@ -9,7 +9,7 @@ const Review = () => {
 
   useEffect(() => {
     const fetchRestroom = async () => {
-      const response = await fetch(`${process.env.BACKEND_URL}/api/restrooms/${id}`);
+      const response = await fetch(`https://the-loo-review.onrender.com/api/restrooms/${id}`);
       const json = await response.json();
 
       if (response.ok) {

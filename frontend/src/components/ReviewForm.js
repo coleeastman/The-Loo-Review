@@ -16,13 +16,14 @@ const ReviewForm = ({ restroom }) => {
 
         const restroomReview = { restroom: restroomName, stars, review };
 
-        const response = await fetch(`${process.env.BACKEND_URL}/api/reviews/`, {
+        const response = await fetch(`https://the-loo-review.onrender.com/api/reviews/`, {
             method: 'POST',
             body: JSON.stringify(restroomReview),
             headers: {
                 'Content-Type': 'application/json'
             }
         });
+        
         const json = await response.json();
 
         if (!response.ok) {

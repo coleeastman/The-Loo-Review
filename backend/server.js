@@ -14,6 +14,7 @@ const app = express()
 
 // middleware
 app.use(cors()); // Enable CORS for all requests
+
 app.use(express.json()) // Parses JSON data into JavaScript obj and assigns it to req.body
 
 app.use((req, res, next) => {

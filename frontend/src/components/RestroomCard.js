@@ -137,7 +137,7 @@ const RestroomCard = ({ restroom }) => {
   useEffect(() => {
     const fetchRestroomReviewCount = async () => {
       try {
-        const response = await fetch(`${process.env.BACKEND_URL}/api/restroomReviewCount/${restroom.restroom}`);
+        const response = await fetch(`https://the-loo-review.onrender.com/api/restroomReviewCount/${restroom.restroom}`);
         const json = await response.json();
 
         if (response.ok) {
