@@ -13,9 +13,24 @@ const restroomReviewCountRoute = require('./routes/restroomReviewCountRoute');
 const app = express()
 
 // middleware
-app.use(cors()); // Enable CORS for all requests
-
 app.use(express.json()) // Parses JSON data into JavaScript obj and assigns it to req.body
+
+// cors middleware 
+const allowedOrigin = 'https://the-loo-review-site.onrender.com';
+
+// Set up CORS options
+const corsOptions = {
+  origin: function (origin, callback) {
+    // check if the incoming request's origin matches the allowed origin
+    if (origin === allowedOrigin || !origin) {
+      callback(null, true); // allow request
+    } else {
+      callback(new Error('Not allowed by CORS')); // block request
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.path}`) // logs request path and method
