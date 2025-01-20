@@ -37,6 +37,8 @@ const ReviewForm = ({ restroom }) => {
             setError(null);
             console.log('new review added');
         }
+
+        alert("Review Submitted");
     };
 
     return (
