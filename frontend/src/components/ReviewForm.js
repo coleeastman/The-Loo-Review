@@ -30,6 +30,7 @@ const ReviewForm = ({ restroom }) => {
             setError(json.error);
         }
         if (response.ok) {
+            alert("Review Submitted");
             setEmptyFields([]);
             setRestroomName('');
             setStars('');
@@ -37,8 +38,6 @@ const ReviewForm = ({ restroom }) => {
             setError(null);
             console.log('new review added');
         }
-
-        alert("Review Submitted");
     };
 
     return (
