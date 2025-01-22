@@ -27,6 +27,8 @@ const ReviewForm = ({ restroom }) => {
         
         const json = await response.json();
 
+        console.log(json);
+
         if (!response.ok) {
             setError(json.error);
             setMessage(null);
@@ -47,7 +49,7 @@ const ReviewForm = ({ restroom }) => {
             setRestroomName('');
             setStars('');
             setReview('');
-            console.log('new review added!');
+            console.log('new review added');
         }
     };
 
