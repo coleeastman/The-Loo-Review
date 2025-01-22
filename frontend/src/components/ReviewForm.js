@@ -30,7 +30,7 @@ const ReviewForm = ({ restroom }) => {
             setError(json.error);
         }
         if (response.ok) {
-            alert("Review Submitted");
+            setMessage({ text: json.message, type: 'success' });
             setEmptyFields([]);
             setRestroomName('');
             setStars('');
@@ -58,6 +58,7 @@ const ReviewForm = ({ restroom }) => {
             />
             <button>Post Review</button>
             {error && <div className="error">{error}</div>}
+            {message && <div className="message">{message}</div>}
         </form>
     );
 };
