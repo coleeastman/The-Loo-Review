@@ -28,18 +28,26 @@ const ReviewForm = ({ restroom }) => {
         const json = await response.json();
 
         if (!response.ok) {
-            setMessage(null);
             setError(json.error);
-
+            setMessage(null);
         }
+        // if (response.ok) {
+        //     setMessage({ text: json.message, type: 'success' });
+        //     setEmptyFields([]);
+        //     setRestroomName('');
+        //     setStars('');
+        //     setReview('');
+        //     setError(null);
+        //     console.log('new review added');
+        // }
         if (response.ok) {
+            console.log(json.message); // Debug the response
             setMessage({ text: json.message, type: 'success' });
-            setEmptyFields([]);
+            setError(null); // Clear any previous errors
             setRestroomName('');
             setStars('');
             setReview('');
-            setError(null);
-            console.log('new review added');
+            console.log('new review added!');
         }
     };
 
