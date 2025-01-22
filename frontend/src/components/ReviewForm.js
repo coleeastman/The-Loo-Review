@@ -5,6 +5,7 @@ const ReviewForm = ({ restroom }) => {
     const [stars, setStars] = useState('');
     const [review, setReview] = useState('');
     const [error, setError] = useState(null);
+    const [message, setMessage] = useState(null);
     const [emptyFields, setEmptyFields] = useState([]);
 
     useEffect(() => {
@@ -27,7 +28,9 @@ const ReviewForm = ({ restroom }) => {
         const json = await response.json();
 
         if (!response.ok) {
+            setMessage(null);
             setError(json.error);
+
         }
         if (response.ok) {
             setMessage({ text: json.message, type: 'success' });
