@@ -47,14 +47,8 @@ const createReview = async (req, res) => {
 
     // add doc to dc
     try {
-        // const newReview = await Review.create({ restroom, stars, review })
-        // res.status(200).json(newReview)
-
         const newReview = await Review.create({ restroom, stars, review })
-        res.status(200).json({
-            message: "Review submitted successfully.",
-            review: newReview
-        })
+        res.status(200).json(newReview)
     } catch (error) {
         res.status(400).json({error: error.message})
     }
