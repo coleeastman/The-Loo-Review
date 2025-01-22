@@ -61,7 +61,7 @@ const ReviewForm = ({ restroom }) => {
             />
             <button>Post Review</button>
             {error && <div className="error">{error}</div>}
-            {message && <div className="message">{message}</div>}
+            {message && <div className="message">{message.text}</div>}
         </form>
     );
 };
