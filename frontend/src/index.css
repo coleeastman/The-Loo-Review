@@ -238,6 +238,14 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
 }
+div.message {
+  padding: 10px;
+  background: #e0ffe0;
+  border: 1px solid #28a745;
+  color: #28a745;
+  border-radius: 4px;
+  margin: 20px 0;
+}
 
 /* star rating */
 
